@@ -48,17 +48,29 @@
 						v-model="form.birthday"
 						@blur="$v.form.birthday.$touch()"
 					>
-					<span class="customers-form__error" v-if="$v.form.birthday.$dirty && !$v.form.birthday.required">Поле обязательно для заполнения</span>
+					<span
+						class="customers-form__error"
+						v-if="$v.form.birthday.$dirty && !$v.form.birthday.required"
+					>Поле обязательно для заполнения</span>
 				</label>
 
 				<label class="customers-form__label">
 					<span class="customers-form__title">Телефон*</span>
 					<input
 						class="customers-form__input input"
+						:class="{'input--error': $v.form.phoneNumber.$error}"
 						type="tel" placeholder="Номер телефона"
 						v-model="form.phoneNumber"
+						@blur="$v.form.phoneNumber.$touch()"
 					>
-					<span class="customers-form__error">Некорректный номер телефона</span>
+					<span
+						class="customers-form__error"
+						v-if="$v.form.phoneNumber.$dirty && !$v.form.phoneNumber.required"
+					>Поле обязательно для заполнения</span>
+					<span
+						class="customers-form__error"
+						v-else-if="$v.form.phoneNumber.$dirty && !$v.form.phoneNumber.format"
+					>Некорректный номер телефона</span>
 				</label>
 
 				<label class="customers-form__label">
@@ -238,7 +250,7 @@
 			<button class="customers-form__button button">Отправить</button>
 
 		</form>
-		<!-- <pre>{{ $v.form.customersGroup }}</pre> -->
+		<pre>{{ $v.form.phoneNumber }}</pre>
   </div>
 </template>
 
@@ -285,7 +297,10 @@ export default {
 				required
 			},
 			phoneNumber: {
-				required
+				required,
+				format(value) {
+					return (/^[7]\d{10}$/).test(value);
+				}
 			},
 			customersGroup: {
 				required
