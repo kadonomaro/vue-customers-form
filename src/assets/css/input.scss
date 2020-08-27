@@ -15,6 +15,12 @@
 		border-color: #22b2ea;
 	}
 }
+.input--error {
+	border-color: #ff5e7b;
+	&:focus {
+		border-color: #ff5e7b;
+	}
+}
 .input--type-date {
 	max-height: 39px;
 }
