@@ -1,0 +1,20 @@
+.input {
+	margin: 0;
+	padding: 8px 12px;
+	font-family: inherit;
+	font-size: 16px;
+	background-color: #f1f1f1;
+	border: 2px solid transparent;
+	box-sizing: border-box;
+	transition: border-color .1s ease-in;
+	outline: none;
+	&::placeholder {
+		font-size: 14px;
+	}
+	&:focus {
+		border-color: #22b2ea;
+	}
+}
+.input--type-date {
+	max-height: 39px;
+}
