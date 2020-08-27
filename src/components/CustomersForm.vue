@@ -1,6 +1,6 @@
 <template>
   <div class="customers-form">
-		<form class="customers-form__form">
+		<form class="customers-form__form" @submit.prevent="submitHandler">
 
 			<div class="customers-form__group">
 				<label class="customers-form__label">
@@ -76,7 +76,6 @@
 				</label>
 			</div>
 
-
 			<div class="customers-form__group">
 				<label class="customers-form__label">
 					<span class="customers-form__title">Тип документа*</span>
@@ -103,7 +102,10 @@
 					<input class="customers-form__input input input--type-date" type="date" v-model="form.documentIssueDate">
 				</label>
 			</div>
+
 			<span class="customers-form__title">* - поля обязательные для заполнения</span>
+			<button class="customers-form__button button">Отправить</button>
+
 		</form>
   </div>
 </template>
@@ -135,6 +137,11 @@ export default {
 				documentIssuedBy: '',
 				documentIssueDate: ''
 			}
+		}
+	},
+	methods: {
+		submitHandler() {
+			console.log(this.form);
 		}
 	}
 }
@@ -177,6 +184,9 @@ export default {
 		&__input {
 			width: 100%;
 			box-sizing: border-box;
+		}
+		&__button {
+			display: block;
 		}
 	}
 </style>
