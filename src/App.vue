@@ -23,4 +23,10 @@ export default {
   color: #303030;
   padding: 60px 0;
 }
+
+@media (max-width: 450px) {
+	#app {
+		padding: 0;
+	}
+}
 </style>

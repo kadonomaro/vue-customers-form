@@ -386,4 +386,17 @@ export default {
 			display: block;
 		}
 	}
+
+
+	@media (max-width: 450px) {
+		.customers-form {
+			box-shadow: none;
+			&__group {
+				display: block;
+			}
+			&__label {
+				max-width: 100%;
+			}
+		}
+	}
 </style>
