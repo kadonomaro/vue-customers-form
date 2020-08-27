@@ -99,7 +99,7 @@
 					<span
 						class="customers-form__error"
 						v-if="$v.form.customersGroup.$dirty && !$v.form.customersGroup.required"
-					>Необходимо выбрать минимум 1</span>
+					>Нужно выбрать минимум 1 вариант</span>
 				</label>
 
 				<label class="customers-form__label">
@@ -247,10 +247,14 @@
 			</div>
 
 			<span class="customers-form__title">* - поля обязательные для заполнения</span>
-			<button class="customers-form__button button">Отправить</button>
+			<button
+				class="customers-form__button button"
+				:disabled="$v.$invalid"
+				v-if="!isCreated"
+			>Отправить</button>
+			<span class="customers-form__message" v-else>{{ successMessage }}</span>
 
 		</form>
-		<pre>{{ $v.form.phoneNumber }}</pre>
   </div>
 </template>
 
@@ -261,6 +265,8 @@ export default {
 	name: 'CustomersForm',
 	data() {
 		return {
+			successMessage: 'Новый клиент успешно создан',
+			isCreated: false,
 			form: {
 				firstName: '',
 				lastName: '',
@@ -318,7 +324,7 @@ export default {
 	},
 	methods: {
 		submitHandler() {
-			console.log('object');
+			this.isCreated = true;
 		}
 	}
 }
@@ -326,7 +332,7 @@ export default {
 
 <style lang="scss">
 	.customers-form {
-		max-width: 450px;
+		max-width: 520px;
 		margin: 0 auto;
 		padding: 10px;
 		box-shadow: 0 3px 10px rgba($color: #000000, $alpha: 0.2);
@@ -366,6 +372,11 @@ export default {
 			background-color: #ff5e7b;
 			transform: translateY(-2px);
 			box-sizing: border-box;
+		}
+		&__message {
+			display: block;
+			color: #32ac32;;
+			font-size: 16px;
 		}
 		&__input {
 			width: 100%;

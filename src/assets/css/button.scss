@@ -11,4 +11,10 @@
 	&:hover {
 		background-color: darken($color: #22b2ea, $amount: 5%);
 	}
+	&:disabled {
+		background-color: #22b2ea;
+		opacity: 0.5;
+		filter: grayscale(1);
+	}
 }
+
